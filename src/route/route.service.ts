@@ -4,8 +4,6 @@ import { RouteComponent } from "../../model/route-component.entity";
 import { RouteItem } from "../../model/route-item.entity";
 import { CreateRouteItemDto } from "./create-route-item.dto";
 import { CreateRouteComponentDto } from "./create-route-component.dto";
-import { InjectModel } from "@nestjs/mongoose";
-import { Model } from "mongoose";
 
 @Injectable()
 export class RouteService implements OnApplicationBootstrap {
