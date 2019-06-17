@@ -10,7 +10,7 @@ export default () => {
     port: 5432,
     username: "postgres",
     password: "postgres",
-    database: "micro-fe",
+    database: "postgres",
     synchronize: true,
     entities: _.values(entities).map(item => item[Object.keys(item)[0]]),
   });
