@@ -1,7 +1,6 @@
 import { IsString } from "class-validator";
-export class CreateRouteItemDto {
+
+export class SetLayoutDto {
   @IsString()
   path: string;
-  @IsString()
-  componentPath: string;
 }

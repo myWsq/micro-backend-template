@@ -1,20 +1,14 @@
 import { Injectable, OnApplicationBootstrap } from "@nestjs/common";
-import { getMongoManager, MongoEntityManager } from "typeorm";
-import { RouteComponent } from "../../model/route-component.entity";
+import { getManager, EntityManager } from "typeorm";
+import { Component } from "../../model/component.entity";
 import { RouteItem } from "../../model/route-item.entity";
 import { CreateRouteItemDto } from "./create-route-item.dto";
-import { CreateRouteComponentDto } from "./create-route-component.dto";
 
 @Injectable()
 export class RouteService implements OnApplicationBootstrap {
-  private manager: MongoEntityManager;
+  private manager: EntityManager;
   onApplicationBootstrap() {
-    this.manager = getMongoManager();
-  }
-  getRouteComponentByPath(path: string) {
-    return this.manager.findOne(RouteComponent, {
-      path,
-    });
+    this.manager = getManager();
   }
 
   getRouteItemByPath(path: string) {
@@ -24,29 +18,19 @@ export class RouteService implements OnApplicationBootstrap {
   }
 
   getRouteItems() {
-    return this.manager.find(RouteItem);
-  }
-
-  getRouteComponents() {
-    return this.manager.find(RouteComponent);
+    return this.manager.find(RouteItem, {
+      relations: ["component"],
+    });
   }
 
   createRouteItem(
     createRouteItemDto: CreateRouteItemDto,
-    routeComponent: RouteComponent
+    component: Component
   ) {
     const routeItem = this.manager.create(RouteItem, {
       path: createRouteItemDto.path,
-      component: routeComponent,
+      component: component,
     });
     return this.manager.save(routeItem);
-  }
-
-  createRouteComponent(createRouteComponent: CreateRouteComponentDto) {
-    const routeComponent = this.manager.create(
-      RouteComponent,
-      createRouteComponent
-    );
-    return this.manager.save(routeComponent);
   }
 }

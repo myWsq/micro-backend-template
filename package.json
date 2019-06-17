@@ -1,5 +1,5 @@
 {
-  "name": "protol-backend",
+  "name": "micro-backend-template",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -12,8 +12,6 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.134",
-    "@types/mongodb": "^3.1.28",
-    "@types/mongoose": "^5.5.6",
     "@types/parcel-bundler": "^1.12.0",
     "nodemon": "^1.19.1",
     "npm-run-all": "^4.1.5",
@@ -23,13 +21,11 @@
   "dependencies": {
     "@nestjs/common": "^6.3.1",
     "@nestjs/core": "^6.3.1",
-    "@nestjs/mongoose": "^6.1.2",
     "@nestjs/platform-express": "^6.3.1",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.9.1",
     "lodash": "^4.17.11",
-    "mongodb": "^3.2.7",
-    "mongoose": "^5.6.0",
+    "pg": "^7.11.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.2",
     "typeorm": "^0.2.18"

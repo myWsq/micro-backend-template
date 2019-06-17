@@ -1,12 +1,17 @@
-import { Entity, ObjectID, ObjectIdColumn, Column, Index } from "typeorm";
-import { RouteComponent } from "./route-component.entity";
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+} from "typeorm";
+import { Component } from "./component.entity";
 
 @Entity()
 export class RouteItem {
-  @ObjectIdColumn()
-  id: ObjectID;
+  @PrimaryGeneratedColumn()
+  id: number;
   @Column()
   path: string;
-  @Column(type => RouteComponent)
-  component: RouteComponent;
+  @ManyToOne(type => Component, Component=>Component.routeItems)
+  component: Component;
 }
