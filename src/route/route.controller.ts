@@ -18,8 +18,8 @@ export class RouteController {
     const exceptionPayload: ValidationExceptionPayload[] = [];
 
     // 获取验证信息
-    const Component = await this.componentService.getComponentByPath(
-      createRouteItemDto.componentPath
+    const Component = await this.componentService.getOneComponent(
+      createRouteItemDto.componentId
     );
     const routeItemShadow = await this.routeService.getRouteItemByPath(
       createRouteItemDto.path
@@ -28,7 +28,7 @@ export class RouteController {
     // 添加异常信息
     if (!Component) {
       exceptionPayload.push({
-        field: "componentPath",
+        field: "componentId",
         code: "missing",
       });
     }

@@ -21,15 +21,15 @@ export class LayoutController {
 
   @Post()
   async setLayoutComponent(@Body() setLayoutDto: SetLayoutDto) {
-    const component = await this.componentService.getComponentByPath(
-      setLayoutDto.path
+    const component = await this.componentService.getOneComponent(
+      setLayoutDto.id
     );
     if (!component) {
       throw new ValidationException([
         {
-          field: "path",
-          code: "missing",
-        },
+          field: "id",
+          code: "missing"
+        }
       ]);
     }
     return this.layoutService.setLayoutComponent(component);

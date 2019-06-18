@@ -15,8 +15,11 @@ export class ComponentService {
   }
   getComponentByPath(path: string) {
     return this.manager.findOne(Component, {
-      path,
+      path
     });
+  }
+  getOneComponent(id: number) {
+    return this.manager.findOne(Component, id);
   }
   getComponents() {
     return this.manager.find(Component);
