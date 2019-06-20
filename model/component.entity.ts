@@ -10,7 +10,7 @@ export class Component {
   @Column()
   js: string;
   @Column({
-    nullable: true,
+    nullable: true
   })
   css: string;
   @OneToMany(type => RouteItem, routeItem => routeItem.component)

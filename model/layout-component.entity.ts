@@ -5,6 +5,8 @@ import { Component } from "./component.entity";
 export class LayoutComponent {
   @PrimaryGeneratedColumn()
   id: number;
-  @ManyToOne(type => Component, component => component.layoutComponents)
+  @ManyToOne(type => Component, component => component.layoutComponents, {
+    onDelete: "CASCADE"
+  })
   component: Component;
 }

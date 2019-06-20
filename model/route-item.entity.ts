@@ -1,9 +1,4 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  ManyToOne,
-} from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
 import { Component } from "./component.entity";
 
 @Entity()
@@ -12,6 +7,8 @@ export class RouteItem {
   id: number;
   @Column()
   path: string;
-  @ManyToOne(type => Component, Component=>Component.routeItems)
+  @ManyToOne(type => Component, Component => Component.routeItems, {
+    onDelete: "CASCADE"
+  })
   component: Component;
 }

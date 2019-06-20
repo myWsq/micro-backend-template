@@ -1,4 +1,4 @@
-import { IsString, IsNumber } from "class-validator";
+import { IsString, IsNumber, IsDefined } from "class-validator";
 export class CreateRouteItemDto {
   @IsString()
   path: string;

@@ -24,4 +24,16 @@ export class ComponentService {
   getComponents() {
     return this.manager.find(Component);
   }
+  updateComponent(id: number, payload: CreateComponentDto) {
+    return this.manager.update(Component, id, payload);
+  }
+  deleteComponent(id: number) {
+    return this.manager.delete(Component, id);
+  }
+  async getComponentUsedCount(id: number) {
+    const component = await this.manager.findOne(Component, id, {
+      relations: ["routeItems", "layoutComponents"]
+    });
+    return component.routeItems.length + component.layoutComponents.length;
+  }
 }

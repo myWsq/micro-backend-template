@@ -13,13 +13,17 @@ export class RouteService implements OnApplicationBootstrap {
 
   getRouteItemByPath(path: string) {
     return this.manager.findOne(RouteItem, {
-      path,
+      path
     });
+  }
+  
+  getOneRouteItem(id: number) {
+    return this.manager.findOne(RouteItem, id)
   }
 
   getRouteItems() {
     return this.manager.find(RouteItem, {
-      relations: ["component"],
+      relations: ["component"]
     });
   }
 
@@ -29,8 +33,23 @@ export class RouteService implements OnApplicationBootstrap {
   ) {
     const routeItem = this.manager.create(RouteItem, {
       path: createRouteItemDto.path,
-      component: component,
+      component: component
     });
     return this.manager.save(routeItem);
+  }
+
+  updateRouteItem(
+    id: number,
+    payload: CreateRouteItemDto,
+    component: Component
+  ) {
+    return this.manager.update(RouteItem, id, {
+      path: payload.path,
+      component
+    });
+  }
+
+  deleteRouteItem(id: number) {
+    return this.manager.delete(RouteItem, id);
   }
 }
